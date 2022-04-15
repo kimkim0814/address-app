@@ -7,6 +7,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    //名前付きルート ルータリンクコンポーネントで名前で遷移先を指定できる
     name: 'home',
     component: HomeView
   },
