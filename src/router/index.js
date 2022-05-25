@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import Addresses from '../views/Addresses.vue'
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,12 @@ const routes = [
     //名前付きルート ルータリンクコンポーネントで名前で遷移先を指定できる
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/addresses',
+    //名前付きルート ルータリンクコンポーネントで名前で遷移先を指定できる
+    name: 'addresses',
+    component: Addresses
   },
   {
     path: '/about',
