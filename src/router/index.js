@@ -1,15 +1,26 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import Addresses from '../views/Addresses.vue'
+import AddressForm from '../views/AddressForm.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    //名前付きルート ルータリンクコンポーネントで名前で遷移先を指定できる
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/addresses',
+    name: 'addresses',
+    component: Addresses
+  },
+  {
+    path: '/addresses/:address_id?/edit',
+    name: 'address_edit',
+    component: AddressForm
   },
   {
     path: '/about',
