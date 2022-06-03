@@ -1,15 +1,18 @@
 <template>
   <v-app>
     <v-toolbar app>
-      <v-toolbar-side-icon @click="toggleSideMenu"></v-toolbar-side-icon>
+      <v-toolbar-side-icon @click.stop="toggleSideMenu"></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-uppercase">
         <span>マイアドレス帳</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-toolbar-items v-if="$store.state.login_user">
+        <v-btn @click="logout">ログアウト</v-btn>
+      </v-toolbar-items>
     </v-toolbar>
     <SideNav/>
-    
-    <v-content> 
+
+    <v-content>
       <router-view/>
     </v-content>
   </v-app>
@@ -25,19 +28,22 @@ export default {
     SideNav
   },
   created(){
-    firebase.auth().onAuthStateChanged(user=>{
-      if(user){
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
         this.setLoginUser(user)
+      } else {
+        this.deleteLoginUser()
       }
     })
   },
   data() {
     return {
-      //
+
     };
   },
   methods: {
-    ...mapActions(['toggleSideMenu','setLoginUser'])
+      ...mapActions(['toggleSideMenu', 'setLoginUser', 'logout', 'deleteLoginUser'])
+
   },
 };
 </script>

@@ -1,4 +1,3 @@
-
 <template>
   <v-container text-xs-center justify-center>
     <v-layout row wrap>
@@ -13,12 +12,13 @@
     </v-layout>
   </v-container>
 </template>
+
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex'
 
 export default {
   methods: {
-    ...mapActions(["login"]),
-  },
-};
+    ...mapActions(['login'])
+  }
+}
 </script>
