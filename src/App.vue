@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-toolbar app>
-        <v-toolbar-side-icon v-show="$store.state.login_user" @click.stop="toggleSideMenu"></v-toolbar-side-icon>
+      <v-toolbar-side-icon v-show="$store.state.login_user" @click.stop="toggleSideMenu"></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-uppercase">
         <span>マイアドレス帳</span>
       </v-toolbar-title>
@@ -20,32 +20,33 @@
 
 <script>
 import firebase from 'firebase'
-import { mapActions } from 'vuex'
 import SideNav from './components/SideNav'
+import { mapActions } from 'vuex'
+
 export default {
-  name: "App",
-  components:{
+  name: 'App',
+  components: {
     SideNav
   },
-  created(){
+  created () {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setLoginUser(user)
-        if(this.$router.currentRoute.name  === 'home') this.$router.push({name:'address'})
+        this.fetchAddresses()
+        if (this.$router.currentRoute.name === 'home') this.$router.push({ name: 'addresses' })
       } else {
         this.deleteLoginUser()
-        this.$router.push({name:'home'})
+        this.$router.push({ name: 'home' })
       }
     })
   },
-  data() {
+  data () {
     return {
-
-    };
+      //
+    }
   },
   methods: {
-      ...mapActions(['toggleSideMenu', 'setLoginUser', 'logout', 'deleteLoginUser'])
-
-  },
-};
+    ...mapActions(['toggleSideMenu', 'setLoginUser', 'logout', 'deleteLoginUser', 'fetchAddresses'])
+  }
+}
 </script>
